@@ -507,7 +507,7 @@ class Guest(object):
         if self.tdl.arch == "x86_64" and hasattr(self.config, "useuefi") and self.config.useuefi is True:
             loader, nvram = oz.ozutil.find_uefi_firmware(self.tdl.arch)
             oz.ozutil.lxml_subelement(osNode, "loader", loader, {'readonly': 'yes', 'type': 'pflash'})
-            oz.ozutil.lxml_subelement(osNode, "nvram", None, {'template': nvram})
+            oz.ozutil.lxml_subelement(osNode, "nvram", None, {'template': nvram, 'format': 'raw', 'templateFormat': 'raw'})
         # poweroff, reboot, crash
         oz.ozutil.lxml_subelement(domain, "on_poweroff", "destroy")
         oz.ozutil.lxml_subelement(domain, "on_reboot", "destroy")
